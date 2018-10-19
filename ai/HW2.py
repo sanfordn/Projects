@@ -1,36 +1,39 @@
 INFINITY = 1000
 
+
 def search(startState):
     score,move = MiniMax(startState,None,True)
-    pos,piece = move
-    print("You will get a score of " + score + "if you place an " + piece "in the position " + pos)
+    print("You will get a score of " + str(score) + " if you make the move " + str(move))
 
 def MiniMax(s, e, isMax):
     s1 = updateState(s, e)
-    if isLeaf(s1):
-        return (score(s1, isMax), "")
+    if isWin(s1):
+        return (score(s1, isMax), "Done")
+    if isTie(s1):
+        return (0, "Done")
     if isMax:
-        highest = -INFINITY
+        highest = -100
         for e1 in getMoves(s1):
             tmpScore, tmpMove = MiniMax(s1, e1, not(isMax))
             if tmpScore > highest:
                 highest = tmpScore
                 move = e1
-        return highest,move
+                print("move is " + str(move))
+        return (highest,move)
     else:
-        lowest = INFINITY
+        lowest = 100
         for e1 in getMoves(s1):
             tmpScore, tmpMove = MiniMax(s1, e1, not(isMax))
             if tmpScore < lowest:
                 lowest = tmpScore
                 move = e1
-        return lowest, move
+                print("move is " + str(move))
+        return (lowest,move)
 
 def getMoves(state):
     moves = []
-    #stateList = list(state)
-    for i in range(len(stateList)):
-        if stateList[i] == '-':
+    for i in range(9):
+        if state[i] == '-':
             moves.append((i,'x'))
             moves.append((i,'o'))
     return moves
@@ -39,16 +42,13 @@ def updateState(s, e):
     if e == None:
         return s
     pos,piece = e
-    return s[:pos] + peice + s[pos:]
+    return s[:pos] + piece + s[pos:]
+
 def isLeaf(state):
-    if isWin(state):
-        return True
-    elif isTie(state):
-        return True
-    else:
-        return False
+    return (isWin(state) or isTie(state))
 
 def isWin(state):
+    #row
     for i in range(0,9,3):
         if state[i] == 'x' and state[i] == state[i+1] and state[i] == state[i+2]:
             return True
@@ -56,6 +56,7 @@ def isWin(state):
             return True
         else:
             return False
+    #col
     for i in range(0,3):
         if state[i] == 'x' and state[i] == state[i+3] and state[i] == state[i+6]:
             return True
@@ -79,16 +80,12 @@ def isWin(state):
         return False
 
 def isTie(state):
-    if '-' in state:
-        return False
-    elif '-' not in state
-        return True
-    else:
-        return "error"
+    for item in state:
+        if item == '-':
+            return False
+    return True
 
 def score(state, isMax):
-    if isTie(state):
-        return 0
     dashes = 0
     for i in range(9):
         if state[i] == '-':
