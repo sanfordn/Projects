@@ -1,9 +1,8 @@
 INFINITY = 1000
-
-
 def search(startState):
     score,move = MiniMax(startState,None,True)
-    print("You will get a score of " + str(score) + " if you make the move " + str(move))
+    pos, piece = move
+    print("You will get a score of " + str(score) + " if you put a " + piece + "in the position " + pos)
 
 def MiniMax(s, e, isMax):
     s1 = updateState(s, e)
@@ -43,9 +42,6 @@ def updateState(s, e):
         return s
     pos,piece = e
     return s[:pos] + piece + s[pos:]
-
-def isLeaf(state):
-    return (isWin(state) or isTie(state))
 
 def isWin(state):
     #row
