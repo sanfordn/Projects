@@ -3,11 +3,12 @@ INFINITY = 1000
 def search(startState):
     score,move = MiniMax(startState,None,True)
     pos,piece = move
+    print("You will get a score of " + score + "if you place an " + piece "in the position " + pos)
 
 def MiniMax(s, e, isMax):
     s1 = updateState(s, e)
     if isLeaf(s1):
-        return (score(s1, isMax), "Complete")
+        return (score(s1, isMax), "")
     if isMax:
         highest = -INFINITY
         for e1 in getMoves(s1):
@@ -30,8 +31,8 @@ def getMoves(state):
     #stateList = list(state)
     for i in range(len(stateList)):
         if stateList[i] == '-':
-            moves.append(state[:i] + 'x' + state[i:])
-            moves.append(state[:i] + 'o' + state[i:])
+            moves.append((i,'x'))
+            moves.append((i,'o'))
     return moves
 
 def updateState(s, e):
@@ -85,4 +86,15 @@ def isTie(state):
     else:
         return "error"
 
-def score(state):
+def score(state, isMax):
+    if isTie(state):
+        return 0
+    dashes = 0
+    for i in range(9):
+        if state[i] == '-':
+            dashes += 1
+    dashes += 1
+    if isMax:
+        return dashes
+    else:
+        return -1 * dashes
