@@ -2,12 +2,12 @@ INFINITY = 1000
 def search(startState):
     score,move = MiniMax(startState,None,True)
     pos, piece = move
-    print("You will get a score of " + str(score) + " if you put a " + piece + "in the position " + pos)
+    print("You will get a score of " + str(score) + " if you put an " + piece + " in the position " + str(pos+1))
 
 def MiniMax(s, e, isMax):
     s1 = updateState(s, e)
     if isWin(s1):
-        return (score(s1, isMax), "Done")
+        return (score(s1, not(isMax)), "Done")
     if isTie(s1):
         return (0, "Done")
     if isMax:
@@ -17,7 +17,6 @@ def MiniMax(s, e, isMax):
             if tmpScore > highest:
                 highest = tmpScore
                 move = e1
-                print("move is " + str(move))
         return (highest,move)
     else:
         lowest = 100
@@ -26,7 +25,6 @@ def MiniMax(s, e, isMax):
             if tmpScore < lowest:
                 lowest = tmpScore
                 move = e1
-                print("move is " + str(move))
         return (lowest,move)
 
 def getMoves(state):
@@ -41,7 +39,7 @@ def updateState(s, e):
     if e == None:
         return s
     pos,piece = e
-    return s[:pos] + piece + s[pos:]
+    return s[:pos] + piece + s[pos+1:]
 
 def isWin(state):
     #row
