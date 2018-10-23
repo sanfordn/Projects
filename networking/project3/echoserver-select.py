@@ -3,6 +3,7 @@
 """
 An echo server that uses select to handle multiple clients at a time.
 Entering any line of input at the terminal will exit the server.
+ ports 65280--65289
 """
 
 import select
@@ -10,7 +11,7 @@ import socket
 import sys
 
 host = ''
-port = 8888
+port = 65280
 backlog = 5
 size = 1024
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -30,8 +31,8 @@ while running:
             # handle the server socket
             client, address = server.accept()
             inputList.append(client)
-	
-	#This is a client sending messages!    
+
+	#This is a client sending messages!
         elif s in inputList:
             # handle all other sockets
 
@@ -45,5 +46,5 @@ while running:
                 print("Removing a client")
                 inputList.remove(s)
                 break
-            
+
 server.close()
