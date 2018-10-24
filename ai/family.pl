@@ -13,3 +13,14 @@ parentOf(charles1,charles2).
 parentOf(charles1,james2).
 parentOf(elizabeth,sophia).
 parentOf(sophia,george1).
+
+motherOf(M,X) :-
+      parentOf(M,X),
+      female(M).
+fatherOf(F,X) :-
+      parentOf(F,X),
+      male(F).
+siblingOf(X,Y) :-
+      parentOf(Z,X),
+      parentOf(Z,Y),
+      X\==Y.
