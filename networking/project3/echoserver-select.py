@@ -11,7 +11,7 @@ import socket
 import sys
 
 host = ''
-port = 65280
+port = 65282
 backlog = 5
 size = 1024
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
