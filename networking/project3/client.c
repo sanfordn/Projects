@@ -2,19 +2,20 @@
  * File: client.c
  * Modified by: Sarah Diesburg for CS 3470
  * Description: Sends a string over a TCP socket
+  ports 65280--65289
  */
 
 
 #include <stdio.h>
-#include <stdlib.h> 
-#include <strings.h> 
-#include <string.h> 
+#include <stdlib.h>
+#include <strings.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 
-#define SERVER_PORT 8888
+#define SERVER_PORT 65281
 #define MAX_LINE 256
 
 int main(int argc, char * argv[])
@@ -62,4 +63,3 @@ int main(int argc, char * argv[])
 		send(s, buf, len, 0);
 	}
 }
-

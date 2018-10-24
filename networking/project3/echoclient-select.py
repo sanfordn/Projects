@@ -3,12 +3,13 @@
 """
 An echo client that allows the user to send multiple lines to the server.
 Entering a blank line will exit the client.
+ ports 65280--65289
 """
 
 import socket
 import sys
 
-port = 8888
+port = 65280
 size = 1024
 
 if len(sys.argv) > 1:
