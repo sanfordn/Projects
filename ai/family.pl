@@ -14,6 +14,13 @@ parentOf(charles1,james2).
 parentOf(elizabeth,sophia).
 parentOf(sophia,george1).
 
+/* sisterOf
+brotherOf
+auntOf
+uncleOf
+grandparentOf
+cousinOf*/
+
 motherOf(M,X) :-
       parentOf(M,X),
       female(M).
@@ -24,3 +31,22 @@ siblingOf(X,Y) :-
       parentOf(Z,X),
       parentOf(Z,Y),
       X\==Y.
+sisterOf(X,Y) :-
+      siblingOf(X,Y),
+      female(X).
+brotherOf(X,Y) :-
+      siblingOf(X,Y),
+      male(X).
+auntOf(X,Y) :-
+      sisterOf(X,Z),
+      parentOf(Z,Y).
+uncleOf(X,Y) :-
+      brotherOf(X,Z),
+      parentOf(Z,Y).
+grandparentOf(X,Y) :-
+      parentOf(X,Z),
+      parentOf(Z,Y).
+cousinOf(X,Y) :-
+      parentOf(Z,X),
+      siblingOf(Z,W),
+      parentOf(W,Y).
