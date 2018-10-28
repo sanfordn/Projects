@@ -4,6 +4,9 @@
  * Description: Sends a string over a TCP socket
   ports 65280--65289
 	./client localhost student.cs.uni.edu username
+	client to server structure = "BEGINuser:str|conntecting:bool|guess:strEND"
+	server to client structure = "BEGINuser:str|recieving:str(t/f)|message_from_client:str|score:str(number)
+																time_left:str(number)END
  */
 
 
@@ -26,7 +29,10 @@ int main(int argc, char * argv[])
 	struct sockaddr_in sin;
 	char *host;
 	char *username;
-	char *port
+	char *message[];
+	bool connecting
+	char *guess
+	char *port;
 	char buf[MAX_LINE];
 	int s;
 	int len;
@@ -62,6 +68,8 @@ int main(int argc, char * argv[])
 	/* main loop: get and send lines of text */
 	while (fgets(buf, sizeof(buf), stdin)) {
 		buf[MAX_LINE-1] = '\0';
+		guess = buf;
+		
 		len = strlen(buf) + 1;
 		send(s, buf, len, 0);
 	}
