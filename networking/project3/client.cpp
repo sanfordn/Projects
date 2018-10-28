@@ -26,7 +26,7 @@ int main(int argc, char * argv[])
 	struct sockaddr_in sin;
 	char *host;
 	char *username;
-	char *port
+	char *port;
 	char buf[MAX_LINE];
 	int s;
 	int len;
