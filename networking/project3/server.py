@@ -34,11 +34,6 @@ while running:
             # handle the server socket
             client, address = server.accept()
             inputList.append(client)
-	#This is a client sending messages!    
-        elif s in inputList:
-            # handle all other sockets
-
-    # try to read
             data = s.recv(size)
             if data:
                 dataPrint = data.decode().strip()
@@ -53,17 +48,28 @@ while running:
                     else:
                         print("error in getting connection boolean")
                     guess = splitData[2]
-                else:
-                    print("error in data recieved\n")
-                if connecting:
-                    #first time user has connected
-                    print(username," connected.")
-                else:
-                    #user is in guessing mode
-                    print(username," is already connected and has a guess of: ", guess)
+                    if guess == "no":
+                        guess = "no guess"
+                    if connecting:
+                        #first time user has connected
+                        print(username," connected.")
+                    else:
+                        #user is in guessing mode
+                        print(username," is already connected and has a guess of: ", guess)
+                reply = "Hello, " + username + ". You are connected."
+                s.sendall(bytes(reply,'ascii'))
+	#This is a client sending messages!
+        elif s in inputList:
+            # handle all other sockets
+            data = s.recv(size)
+            if data:
+                print(data.decode().strip())
+
+
+                # try to read
             else:
                 s.close()
-                print("Removing client: ", username)
+                print(username, " disconnected.")
                 inputList.remove(s)
                 break
 
