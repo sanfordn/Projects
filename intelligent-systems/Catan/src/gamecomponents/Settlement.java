@@ -25,5 +25,10 @@ public class Settlement implements BuildableObject {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int hay() {
+		return 0;
+	}
 
 }

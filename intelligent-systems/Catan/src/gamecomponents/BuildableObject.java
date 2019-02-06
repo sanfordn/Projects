@@ -6,5 +6,7 @@ public interface BuildableObject {
 	public int wool();
 	public int brick();
 	public int ore();
+	public int hay();
+	
 	
 }
