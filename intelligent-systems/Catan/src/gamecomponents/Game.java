@@ -1,10 +1,6 @@
 package gamecomponents;
 
 public class Game {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	private 
+	public Player player1 = new Player("Nick", )
 }
