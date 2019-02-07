@@ -1,9 +1,18 @@
 package gamecomponents;
 
+import java.util.ArrayList;
+
 public class Hex {
 	private boolean robber = false;
 	private int number = 0;
 	private int tagval = -1;
+	private ArrayList<Corner> corners = new ArrayList<Corner>();
+	private ArrayList<Edge> edges = new ArrayList<Edge>();
+	
+	
+	public Hex() {
+		
+	}
 	
 	public int getNumber() {
 		return number;
