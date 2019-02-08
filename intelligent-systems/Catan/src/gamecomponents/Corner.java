@@ -12,6 +12,11 @@ public class Corner {
 		hex2 = sharedHex2;
 	}
 	
+	public Corner() {
+		hex1 = null;
+		hex2 = null;
+	}
+	
 	public ArrayList<Hex> sharedWith() {
 		ArrayList<Hex> sharedHexs = new ArrayList<Hex>();
 		sharedHexs.add(hex1);

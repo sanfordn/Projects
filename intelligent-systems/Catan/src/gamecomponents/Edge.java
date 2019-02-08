@@ -12,6 +12,7 @@ public class Edge {
 		otherHex = null;
 	}
 	
+	
 	public Hex sharedWith() {
 		return otherHex;
 	}
