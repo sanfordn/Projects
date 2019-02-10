@@ -1,5 +1,7 @@
 package gamecomponents;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class DevelopmentCard {
 	//These can be accessed from every player
@@ -36,7 +38,7 @@ public class DevelopmentCard {
 	}
 	
 	//decrements amount of Road Building Cards by 1
-	public void getRoadBuildingCard() {
+	public void getRoadCard() {
 		amount_RB = amount_RB - 1;
 	}
 	
@@ -51,31 +53,50 @@ public class DevelopmentCard {
 	}
 	
 	//This is to buy a development card
-	public void buyDevelopmentCard(int amount) {
+	public String buyDevelopmentCard(int amount) {
 		//we could either leave out amount and have them buy a development
 		//card one by one or we could use amount so our agent could buy as many at one time
 		if ( (sheep - amount) >=0 && (hay - amount) >=0 && (ore - amount) >= 0) {
-			System.out.println("You just bought a Develpoment card");
+			Random randnum = new Random();
+			//get size of list, if we have 0 of a card, the size decreases
+			List currentCards = checkCardsLeft();
+			//0 - n, n is how many types are left
+			int randNum = randnum.nextInt(currentCards.size());
+			//get random integer 0-n and pick that from our current cards
+			String acard = (String) currentCards.get(randNum);
+			System.out.println("You just got " + acard);	
 			
-			//Whats left to do
-			//  1. Grab the amount of cards we have left with our checkCardsLeft()
-			//  2. Figure out how to call one of the get functions above
-			//  3. return that to player. 
-			
+			//calls the get functions from earlier
+			if (acard == "Knight") {
+				getKnightCard();
+			}	
+			if (acard == "Victory Point") {
+				getVictoryPointCard();
+			}	
+			if (acard == "Road") {
+				getRoadCard();
+			}	
+			if (acard == "Monopoly") {
+				getMonopolyCard();
+			}	
+			if (acard == "Year of Plenty") {
+				getYearOfPlentyCard();
+			}	
+			//return type of card to inventory?
+			return acard;			
 			
 		} else {
 			System.out.println("Insufficient funds");
+			return "";
 		}
-		
-		
 	}
 	
-	public ArrayList checkCardsLeft() {
+	public List checkCardsLeft() {
 		
 		//we have to check to make sure we dont try and grab
 		//a dev card that equals 0 
 		//5 is the max amount of cards we can have
-		ArrayList<String> cards = new ArrayList<String>(5);
+		List<String> cards = new ArrayList<String>();
 		if (amount_K > 0) {
 			cards.add("Knight");
 		}
@@ -94,12 +115,4 @@ public class DevelopmentCard {
 		return cards;	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
 }
