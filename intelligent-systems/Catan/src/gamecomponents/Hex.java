@@ -9,11 +9,15 @@ public class Hex {
 	private final char resource;
 	private ArrayList<Hex> hexes;
 	private float prob;
+	private ArrayList<Corner> corners;
+	private ArrayList<Edge> edges;
 	
 	
 	public Hex(char hexResource, Hex w, Hex nw, Hex ne, Hex e, Hex se, Hex sw) {
 		resource = hexResource;
 		hexes = new ArrayList<Hex>(6);
+		corners = new ArrayList<Corner>(6);
+		edges = new ArrayList<Edge>(6);
 		hexes.add(0,w);
 		hexes.add(1,nw);
 		hexes.add(2,ne);
@@ -23,6 +27,8 @@ public class Hex {
 	}
 	
 	public Hex() {
+		corners = new ArrayList<Corner>(6);
+		edges = new ArrayList<Edge>(6);
 		resource = 'n';
 		hexes.add(0,null);
 		hexes.add(1,null);
@@ -33,6 +39,8 @@ public class Hex {
 	}
 	
 	public Hex(char hexResource) {
+		corners = new ArrayList<Corner>(6);
+		edges = new ArrayList<Edge>(6);
 		resource = hexResource;
 		hexes.add(0,null);
 		hexes.add(1,null);
@@ -80,6 +88,15 @@ public class Hex {
 	
 	public void setSW(Hex myHex) {
 		hexes.set(5, myHex);
+	}
+	
+	public void setNeighbors(Hex w, Hex nw, Hex ne, Hex e, Hex se, Hex sw) {
+		this.setW(w);
+		this.setNW(nw);
+		this.setNE(ne);
+		this.setE(e);
+		this.setSE(se);
+		this.setSW(sw);
 	}
 	
 	public ArrayList<Hex> getNeighbors() {
