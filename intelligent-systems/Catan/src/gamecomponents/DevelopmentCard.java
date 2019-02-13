@@ -14,17 +14,14 @@ public class DevelopmentCard {
 	private int sheep = 0;
 	private int ore = 0;
 	private int hay = 0;
-	//Players knights or VP 
-	private int knights = 0;
-	private int VP = 0;
-
-
+	//List of development cards
+	private String[] cards = null;
+	
+	
 	public DevelopmentCard(int s, int o, int h) {
 		sheep = s;
 		ore = o;
 		hay = h;
-		knights = 0;
-		VP = 0;	
 	}
 	
 	//decrements amount of Knight cards by 1
@@ -113,6 +110,10 @@ public class DevelopmentCard {
 			cards.add("Year of Plenty");
 		}
 		return cards;	
+	}
+	
+	public String[] checkCards() {
+		return cards;
 	}
 	
 }
