@@ -49,6 +49,13 @@ public class Board {
 						hexBoard.get(i+4), //se
 						hexBoard.get(i+3)); //sw
 				if(i == 0 || i == 1) {
+					changeHex.setE(hexBoard.get(i+1));
+					if (i == 0) {
+						changeHex.setW(nullHex);
+					} else {
+						changeHex.setW(hexBoard.get(i-1));
+					}
+				} else {
 					
 				}
 			} else if (i >= 3 && i < 7) {
