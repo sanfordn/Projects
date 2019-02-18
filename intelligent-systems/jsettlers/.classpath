@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" output="classes" path="java"/>
-	<classpathentry kind="var" path="JRE_LIB" sourcepath="JRE_SRC"/>
+	<classpathentry kind="var" path="JRE_LIB" rootpath="JRE_SRCROOT" sourcepath="JRE_SRC"/>
 	<classpathentry kind="con" path="/Users/nicksanford/projects/intelligent-systems/jsettlers-1.2.01/target/classes"/>
-	<classpathentry kind="lib" path="build.xml"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
